@@ -7,20 +7,14 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.context.annotation.Bean;
 
 @SpringBootApplication
-@EnableConfigurationProperties(StorageProperties.class)
 public class FileUploadApplication {
+
+    private int maxUploadSizeInMb = 10 * 1024 * 1024;
 
     public static void main(String[] args) {
         SpringApplication.run(FileUploadApplication.class, args);
     }
 
-    @Bean
-    CommandLineRunner init(StorageService storageService) {
-        return (args -> {
-            storageService.deleteAll();
-            storageService.init();
 
-        });
-    }
 
 }
